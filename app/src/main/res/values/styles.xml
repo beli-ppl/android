@@ -29,7 +29,6 @@
         <item name="android:typeface">sans</item>
         <item name="drawerArrowStyle">@style/MaterialDrawer.DrawerArrowStyle</item>
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24px</item>
     </style>
 
     <style name="AppThemeFullScreen" parent="AppTheme">
@@ -132,20 +131,6 @@
 
     <style name="TextStyle.EditText" parent="TextStyle">
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
-    </style>
-
-    <style name="Button.Action.Positive" parent="Button">
-        <item name="android:textColor">@drawable/button_positive_text_drawable</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:background">@color/transparent</item>
-    </style>
-
-    <style name="Button.Action.Negative" parent="Button">
-        <item name="android:textColor">@drawable/button_negative_text_drawable</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:background">@color/transparent</item>
     </style>
 
     <style name="AppTab" parent="Widget.Design.TabLayout">

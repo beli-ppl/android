@@ -2,7 +2,7 @@
     <string name="app_name">Beli</string>
 
     <!--Login-->
-    <string name="login_title">Login BeLi</string>
+    <string name="login_title">BeLi</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
