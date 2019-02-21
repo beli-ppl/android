@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Beli</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Login-->
+    <string name="login_title">BeLi</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
