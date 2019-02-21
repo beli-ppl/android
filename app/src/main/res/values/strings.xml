@@ -6,4 +6,6 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="tab_label1">Detak jantung</string>
+    <string name="tab_label2">Gizi</string>
 </resources>

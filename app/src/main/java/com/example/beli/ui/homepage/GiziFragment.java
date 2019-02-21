@@ -12,10 +12,10 @@ import com.example.beli.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class gizi extends Fragment {
+public class GiziFragment extends Fragment {
 
 
-    public gizi() {
+    public GiziFragment() {
         // Required empty public constructor
     }
 

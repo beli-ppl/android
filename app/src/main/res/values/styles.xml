@@ -95,7 +95,7 @@
         <item name="android:textAppearance">@style/TextAppearance.Text.Italic</item>
     </style>
 
-    <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.ActionBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
