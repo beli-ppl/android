@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.beli.R;
+import com.example.beli.ui.homepage.HomeActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -88,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             Log.d(TAG, "kamu berhasil login");
             Log.d(TAG, account.getEmail());
+            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(home);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
