@@ -8,4 +8,7 @@
     <string name="password">Password</string>
 
     <string name="google_server_client_id">95562938520-bcsocgb0572ehmlgugjq5lvhlhbar72n.apps.googleusercontent.com</string>
+
+    <string name="tab_label1">Detak jantung</string>
+    <string name="tab_label2">Gizi</string>
 </resources>
