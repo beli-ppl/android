@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Beli</string>
+<<<<<<< Updated upstream
 
     <!--Login-->
     <string name="login_title">BeLi</string>
@@ -11,4 +12,8 @@
 
     <string name="tab_label1">Detak jantung</string>
     <string name="tab_label2">Gizi</string>
+=======
+    <string name="you_need_more">You need more exercise!</string>
+    <string name="your_heart_rate">135bpm</string>
+>>>>>>> Stashed changes
 </resources>
