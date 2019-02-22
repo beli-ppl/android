@@ -26,4 +26,11 @@ public class User {
         this.height = height;
         this.width = width;
     }
+
+    public User(String email, String name, Integer height, Integer width) {
+        this.email = email;
+        this.name = name;
+        this.height = height;
+        this.width = width;
+    }
 }

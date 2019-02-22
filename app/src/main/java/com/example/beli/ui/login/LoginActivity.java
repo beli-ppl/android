@@ -1,6 +1,7 @@
 package com.example.beli.ui.login;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.beli.R;
+import com.example.beli.data.db.models.User;
 import com.example.beli.service.step.StepResponse;
 import com.example.beli.service.step.StepService;
+import com.example.beli.service.user.UserResponse;
+import com.example.beli.service.user.UserService;
 import com.example.beli.ui.homepage.HomeActivity;
 import com.example.beli.utils.RetrofitClientInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
@@ -41,16 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mLoginButton = findViewById(R.id.btn_server_login);
-        mLoginButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("TAI LU", "TAI LU JUGA");
-                    }
-                }
-        );
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -68,21 +63,21 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
-        StepService stepService = RetrofitClientInstance.getRetrofitInstance().create(StepService.class);
-
-        Call<StepResponse> call = stepService.getAllStep();
-        call.enqueue(new Callback<StepResponse>() {
-            @Override
-            public void onResponse(Call<StepResponse> call, Response<StepResponse> response) {
-                Log.d(TAG, response.body().message);
-            }
-
-            @Override
-            public void onFailure(Call<StepResponse> call, Throwable t) {
-                Log.d(TAG, "JANCUKKK");
-                Log.d(TAG, t.toString());
-            }
-        });
+//        StepService stepService = RetrofitClientInstance.getRetrofitInstance().create(StepService.class);
+//
+//        Call<StepResponse> call = stepService.getAllStep();
+//        call.enqueue(new Callback<StepResponse>() {
+//            @Override
+//            public void onResponse(Call<StepResponse> call, Response<StepResponse> response) {
+//                Log.d(TAG, response.body().message);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<StepResponse> call, Throwable t) {
+//                Log.d(TAG, "JANCUKKK");
+//                Log.d(TAG, t.toString());
+//            }
+//        });
     }
 
     @Override
@@ -111,14 +106,28 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-            // Signed in successfully, show authenticated UI.
-            Log.d(TAG, "kamu berhasil login");
-            Log.d(TAG, account.getEmail());
+            User signInUser = new User(account.getEmail(), account.getDisplayName(), 100, 100);
+            Log.d(TAG, account.getDisplayName());
+
+            UserService userService = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
+            Call<UserResponse> call = userService.googleSignIn(signInUser);
+            call.enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+
+                    Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(home);
+                }
+
+                @Override
+                public void onFailure(Call<UserResponse> call, Throwable t) {
+                    Log.d(TAG, "kamu gagal login");
+                    Log.d(TAG, t.toString());
+                }
+            });
             Intent home = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(home);
         } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Log.d(TAG, "kamu gagal login");
         }

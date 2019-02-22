@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 
 public interface StepService {
     @GET("/step")
-    Call<com.example.beli.service.step.StepResponse> getAllStep();
+    Call<StepResponse> getAllStep();
 }
