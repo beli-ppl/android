@@ -95,17 +95,14 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             User signInUser = new User(account.getEmail(), account.getDisplayName(), 100, 100);
-            Log.d(TAG, account.getDisplayName());
-            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(home);
             UserService userService = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
             Call<UserResponse> call = userService.googleSignIn(signInUser);
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(mContext);
-                    Log.d(TAG, getString(response.body().data.get(0).id));
-                    sharedPreferencesUtil.writeIntPreferences("user_id", response.body().data.get(0).id);
+//                    Log.d(TAG, getString(response.body().data.get(0).id));
+//                    sharedPreferencesUtil.writeIntPreferences("user_id", response.body().data.get(0).id);
                     // Log.d(TAG, getString(sharedPreferencesUtil.readIntPreferences("user_id")));
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(home);
