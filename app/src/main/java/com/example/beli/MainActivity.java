@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     public void checkHeartRate(View view) {
         String message = "Place your finger on the heartrate sensor";
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, CheckHeartRateActivity.class);
-        startActivity(intent);
     }
 
 }

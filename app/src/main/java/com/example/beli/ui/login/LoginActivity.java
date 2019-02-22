@@ -1,5 +1,6 @@
 package com.example.beli.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.example.beli.service.user.UserResponse;
 import com.example.beli.service.user.UserService;
 import com.example.beli.ui.homepage.HomeActivity;
 import com.example.beli.utils.RetrofitClientInstance;
+import com.example.beli.utils.SharedPreferencesUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginButton;
     private ImageButton mGoogleLoginButton;
     private GoogleSignInClient mGoogleSignInClient;
-
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
-//        StepService stepService = RetrofitClientInstance.getRetrofitInstance().create(StepService.class);
-//
-//        Call<StepResponse> call = stepService.getAllStep();
-//        call.enqueue(new Callback<StepResponse>() {
-//            @Override
-//            public void onResponse(Call<StepResponse> call, Response<StepResponse> response) {
-//                Log.d(TAG, response.body().message);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<StepResponse> call, Throwable t) {
-//                Log.d(TAG, "JANCUKKK");
-//                Log.d(TAG, t.toString());
-//            }
-//        });
+        this.mContext = this;
     }
 
     @Override
@@ -114,7 +102,10 @@ public class LoginActivity extends AppCompatActivity {
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-
+                    SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(mContext);
+                    Log.d(TAG, getString(response.body().data.get(0).id));
+                    sharedPreferencesUtil.writeIntPreferences("user_id", response.body().data.get(0).id);
+                    // Log.d(TAG, getString(sharedPreferencesUtil.readIntPreferences("user_id")));
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(home);
                 }
@@ -125,8 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, t.toString());
                 }
             });
-            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(home);
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Log.d(TAG, "kamu gagal login");
