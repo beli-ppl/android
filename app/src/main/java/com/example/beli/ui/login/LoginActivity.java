@@ -9,13 +9,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.beli.R;
+import com.example.beli.service.step.StepResponse;
+import com.example.beli.service.step.StepService;
 import com.example.beli.ui.homepage.HomeActivity;
+import com.example.beli.utils.RetrofitClientInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,6 +67,22 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        StepService stepService = RetrofitClientInstance.getRetrofitInstance().create(StepService.class);
+
+        Call<StepResponse> call = stepService.getAllStep();
+        call.enqueue(new Callback<StepResponse>() {
+            @Override
+            public void onResponse(Call<StepResponse> call, Response<StepResponse> response) {
+                Log.d(TAG, response.body().message);
+            }
+
+            @Override
+            public void onFailure(Call<StepResponse> call, Throwable t) {
+                Log.d(TAG, "JANCUKKK");
+                Log.d(TAG, t.toString());
+            }
+        });
     }
 
     @Override

@@ -1,16 +1,23 @@
 package com.example.beli.data.db.models;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
-    private Integer id;
-    private String email;
-    private String name;
-    private Integer height;
-    private Integer width;
-    private Integer lastTotalCalory;
-    private Integer lastTypeNutrition;
-    private Integer lastCountStep;
-    private Integer lastHighTemperature;
+    @SerializedName("id")
+    public Integer id;
+
+    @SerializedName("email")
+    public String email;
+
+    @SerializedName("name")
+    public String name;
+
+    @SerializedName("height")
+    public Integer height;
+
+    @SerializedName("width")
+    public Integer width;
 
     public User(Integer id, String email, String name, Integer height, Integer width) {
         this.id = id;
@@ -19,7 +26,4 @@ public class User {
         this.height = height;
         this.width = width;
     }
-
-
-
 }
