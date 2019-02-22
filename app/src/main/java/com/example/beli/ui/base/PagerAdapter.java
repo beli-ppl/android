@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.beli.ui.homepage.GiziFragment;
+import com.example.beli.ui.homepage.HealthFragment;
+
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
@@ -18,7 +20,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new GiziFragment();
+                return new HealthFragment();
             case 1:
                 return new GiziFragment();
             default:

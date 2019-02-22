@@ -1,23 +1,11 @@
 package com.example.beli.data.db.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class User {
-    @Expose
-    @SerializedName("id")
     private Integer id;
-    @Expose
-    @SerializedName("email")
     private String email;
-    @Expose
-    @SerializedName("name")
     private String name;
-    @Expose
-    @SerializedName("height")
     private Integer height;
-    @Expose
-    @SerializedName("width")
     private Integer width;
     private Integer lastTotalCalory;
     private Integer lastTypeNutrition;
