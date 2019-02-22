@@ -16,4 +16,10 @@
     <string name="your_heart_rate">135bpm</string>
 
     <string name="preference_file_key">skidipappappreman</string>
+    
+    <string name="dummyCounter">1500</string>
+    <string name="makan_pagi">Makan pagi</string>
+    <string name="kaloriDummy">Total kalori : 1000</string>
+    <string name="makan_siang">Makan siang</string>
+    <string name="makan_malam">Makan malam</string>
 </resources>

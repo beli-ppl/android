@@ -96,7 +96,8 @@ public class LoginActivity extends AppCompatActivity {
 
             User signInUser = new User(account.getEmail(), account.getDisplayName(), 100, 100);
             Log.d(TAG, account.getDisplayName());
-
+            Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(home);
             UserService userService = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
             Call<UserResponse> call = userService.googleSignIn(signInUser);
             call.enqueue(new Callback<UserResponse>() {
@@ -112,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Log.d(TAG, "kamu gagal login");
+                    Log.d(TAG, "kamu gagal login123");
                     Log.d(TAG, t.toString());
                 }
             });

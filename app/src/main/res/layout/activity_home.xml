@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/palleteDark"
+        android:background="@color/cyan_dark"
         android:minHeight="?attr/actionBarSize"
         app:tabTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
