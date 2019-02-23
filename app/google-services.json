@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "874074183804",
+    "firebase_url": "https://beli-ppl-c0a82.firebaseio.com",
+    "project_id": "beli-ppl-c0a82",
+    "storage_bucket": "beli-ppl-c0a82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874074183804:android:ce2b0d90ea84363a",
+        "android_client_info": {
+          "package_name": "com.example.beli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874074183804-1fgc086kqqafvr5r0485r8edjhef8sng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsiS3N20Dud4fZ7dd1pwYdJSU3jwRlBv8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
