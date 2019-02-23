@@ -24,7 +24,6 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class GiziFragment extends Fragment implements SensorEventListener {
-
     private SensorManager sensorManager;
     private CircularProgressBar progressBar;
     private TextView counter;

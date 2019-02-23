@@ -1,15 +1,37 @@
 package com.example.beli.ui.homepage;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.beli.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import org.w3c.dom.Text;
 
 public class HealthFragment extends Fragment {
+
+    private TextView textLat;
+    private TextView textLong;
+
+    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 123;
+    private static String TAG = "Health-Fragment";
+
+    private FusedLocationProviderClient fusedLocationClient;
+
     public HealthFragment() {
         // Required empty public constructor
     }
@@ -18,6 +40,57 @@ public class HealthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health, container, false);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        View view = inflater.inflate(R.layout.fragment_health, container, false);
+
+        textLat = (TextView) view.findViewById(R.id.location_lat);
+        textLong = (TextView) view.findViewById(R.id.location_long);
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
+        } else {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                textLat.setText("lat: " + Double.toString(location.getAltitude()));
+                                textLong.setText("long: " + Double.toString(location.getLongitude()));
+                            }
+                        }
+                    });
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_ACCESS_COARSE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        fusedLocationClient.getLastLocation()
+                                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                                    @Override
+                                    public void onSuccess(Location location) {
+                                        if (location != null) {
+                                            Log.d(TAG, location.toString());
+                                        }
+                                    }
+                                });
+                    }
+                } else {
+                }
+                return;
+            }
+        }
     }
 }
