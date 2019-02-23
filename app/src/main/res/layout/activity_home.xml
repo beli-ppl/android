@@ -14,7 +14,8 @@
         android:background="@color/cyan_dark"
         android:minHeight="?attr/actionBarSize"
         app:tabTextColor="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         app:tabIndicatorColor="@color/palleteLight"/>
 
     <android.support.v4.view.ViewPager
@@ -22,5 +23,4 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/tab_layout"/>
-
 </RelativeLayout>
