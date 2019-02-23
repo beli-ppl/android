@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/cyan_dark"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="20dp">
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 app:animateProgress="true"
                 app:backgroundStrokeColor="@color/shadow"
                 app:backgroundStrokeWidth="5dp"
@@ -35,18 +35,18 @@
                 app:indeterminateSweepAnimationDuration="600"
                 app:indeterminateMinimumAngle="45"
                 app:maximum="5000"
-                app:progress="3200"
+                app:progress="5000"
                 app:progressAnimationDuration="100"
                 app:startAngle="270"/>
 
             <TextView
                 android:id="@+id/counter"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="3200"
+                android:text="10000"
                 style="@style/TextStyle.Counter" />
         </android.support.v7.widget.CardView>
         <LinearLayout
