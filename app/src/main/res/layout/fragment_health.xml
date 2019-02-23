@@ -8,47 +8,9 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp">
-        <RelativeLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:padding="25dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/circle"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/heyho" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/subTitle"
-                android:text="@string/you_need_more"
-                android:layout_below="@id/circle"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                style="@style/TextAppearance.AppCompat.Subhead" />
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_margin="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,9 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFF"
-            android:padding="25dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:padding="25dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -96,8 +56,8 @@
                 android:id="@+id/heartrate"
                 android:gravity="center">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:src="@drawable/heartrate" />
             </RelativeLayout>
 
@@ -118,6 +78,8 @@
                 android:layout_below="@id/this_is"
                 android:padding="8dp"
                 android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 style="@style/TextAppearance.AppCompat.Subhead" />
 
             <RelativeLayout
@@ -127,17 +89,18 @@
                 android:gravity="center">
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp">
+                    android:layout_height="50dp">
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
+                        android:id="@+id/checkButton"
                         android:text="Click here to check"
                         android:background="#2E86C1"
                         android:textColor="#FFF"
                         android:layout_marginTop="8dp"
-                        android:onClick="checkHeartRate"
+                        android:textStyle="bold"
                         />
                 </RelativeLayout>
             </RelativeLayout>

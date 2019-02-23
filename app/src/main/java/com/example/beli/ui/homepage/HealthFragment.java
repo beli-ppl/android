@@ -2,6 +2,7 @@ package com.example.beli.ui.homepage;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.beli.R;
+import com.example.beli.utils.SharedPreferencesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.w3c.dom.Text;
+
+import static android.app.Activity.RESULT_OK;
+import static com.example.beli.ui.homepage.CheckHeartActivity.EXTRA_REPLY;
 
 public class HealthFragment extends Fragment {
 
@@ -29,8 +34,12 @@ public class HealthFragment extends Fragment {
 
     private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 123;
     private static String TAG = "Health-Fragment";
+    private Button checkButton;
 
     private FusedLocationProviderClient fusedLocationClient;
+
+    public static final int TEXT_REQUEST = 1;
+    private TextView heartratetext;
 
     public HealthFragment() {
         // Required empty public constructor
@@ -64,7 +73,30 @@ public class HealthFragment extends Fragment {
                     });
         }
 
+        heartratetext = (TextView) view.findViewById(R.id.yourheartrate);
+
+        checkButton = (Button) view.findViewById(R.id.checkButton);
+        checkButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), CheckHeartActivity.class);
+                        getActivity().startActivityForResult(intent, TEXT_REQUEST);
+                    }
+                }
+        );
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
+        String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY);
+        Log.d(TAG, yourheartrate);
+        heartratetext.setText(yourheartrate);
     }
 
     @Override

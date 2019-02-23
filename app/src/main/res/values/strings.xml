@@ -13,8 +13,7 @@
     <string name="tab_label2">Gizi</string>
 
     <string name="you_need_more">You need more exercise!</string>
-    <string name="your_heart_rate">135bpm</string>
-
+    <string name="your_heart_rate">Please check</string>
     <string name="preference_file_key">skidipappappreman</string>
     <string name="default_notification_channel_id">06071998</string>
 
@@ -23,4 +22,6 @@
     <string name="kaloriDummy">Total kalori : 1000</string>
     <string name="makan_siang">Makan siang</string>
     <string name="makan_malam">Makan malam</string>
+    <string name="this_is">This is your heart rate</string>
+    <string name="click_here">Click here to check</string>
 </resources>
