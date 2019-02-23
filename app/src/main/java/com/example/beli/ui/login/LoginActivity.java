@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(mContext);
                     sharedPreferencesUtil.writeIntPreferences("USER_ID", response.body().data.get(0).id);
-
+                    sharedPreferencesUtil.writeStringPreferences("USER_EMAIL", response.body().data.get(0).email);
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(home);
                 }
