@@ -1,7 +1,10 @@
 package com.example.beli.ui.homepage;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,22 +20,33 @@ import android.widget.Toast;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.example.beli.R;
+import com.example.beli.service.stepCounter.StepCounterService;
 
 import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GiziFragment extends Fragment implements SensorEventListener {
+public class GiziFragment extends Fragment {
+    private static final String TAG = "GiziFragment";
+
+    public CircularProgressBar progressBar;
+
     private SensorManager sensorManager;
-    private CircularProgressBar progressBar;
     private TextView counter;
-    boolean activityRunning;
+    private Intent mStepIntent;
 
-    public GiziFragment() {
-        // Required empty public constructor
+    public GiziFragment() {}
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mStepIntent = new Intent(getActivity(), StepCounterService.class);
+
+        Log.d(TAG, "startService");
+        getActivity().startService(new Intent(getActivity(), StepCounterService.class));
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,39 +57,38 @@ public class GiziFragment extends Fragment implements SensorEventListener {
         progressBar = (CircularProgressBar) view.findViewById(R.id.progress_bar);
         counter = (TextView) view.findViewById(R.id.counter);
 
-        sensorManager = (SensorManager) (getActivity()).getSystemService(Context.SENSOR_SERVICE);
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        activityRunning = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null) {
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        } else {
-            Toast.makeText(getActivity(), "Count sensor not available!", Toast.LENGTH_LONG).show();
-        }
+
+        IntentFilter stepCounterFilter = new IntentFilter(StepCounterService.BROADCAST_ACTION);
+
+        getActivity().registerReceiver(broadcastReceiver, stepCounterFilter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        activityRunning = false;
+
+        getActivity().unregisterReceiver(broadcastReceiver);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (activityRunning) {
-            counter.setText(String.valueOf(event.values[0]));
-            Log.d("stepcounter", String.valueOf(counter.getText()));
-            progressBar.setProgress(Float.parseFloat(String.valueOf(counter.getText())));
-            Log.d("stepprogress", String.valueOf(progressBar.getProgress()));
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "On Receive");
+            // call updateUI passing in our intent which is holding the data to display.
+            updateViews(intent);
         }
-    }
+    };
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    private void updateViews(Intent intent) {
+        String countedStep = intent.getStringExtra("Counted_Step");
+        counter.setText(String.valueOf(countedStep));
+
+        Log.d(TAG, String.valueOf(countedStep));
     }
 }

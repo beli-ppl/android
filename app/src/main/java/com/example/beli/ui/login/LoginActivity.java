@@ -101,7 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(mContext);
-                    sharedPreferencesUtil.writeIntPreferences("user_id", response.body().data.get(0).id);
+                    sharedPreferencesUtil.writeIntPreferences("USER_ID", response.body().data.get(0).id);
+
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(home);
                 }
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, t.toString());
                 }
             });
+
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Log.d(TAG, "kamu gagal login");
