@@ -7,6 +7,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +24,9 @@ public class CheckHeartActivity extends AppCompatActivity {
     private Sensor heartRateSensor;
     private SensorEventListener heartRateEventListener;
     private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 123;
-    TextView showHeartRate;
-    TextView loadingStatement;
+    private ImageView belilogo;
+    private ProgressBar loading;
+    private TextView loadingStatement;
     public static final String EXTRA_REPLY =
             "com.example.beli.extra.REPLY";
 
@@ -33,21 +37,25 @@ public class CheckHeartActivity extends AppCompatActivity {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         heartRateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
         loadingStatement = (TextView) findViewById(R.id.please_wait);
-        showHeartRate = (TextView) findViewById(R.id.heartrate);
+        belilogo = (ImageView) findViewById(R.id.belilogo);
+        loading = (ProgressBar) findViewById(R.id.loading);
 
         if (heartRateSensor == null) {
-            Toast.makeText(getApplicationContext(), "This device has no heart rate sensor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Perangkat ini tidak memiliki heart sensor", Toast.LENGTH_SHORT).show();
             finish();
         }
 
         heartRateEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                loadingStatement.setText("Hold still...");
-                showHeartRate.setText(String.valueOf(event.values[0]));
+                belilogo.setVisibility(View.GONE);
+                loading.setVisibility(View.VISIBLE);
+                loadingStatement.setText("Tunggu dulu... Jangan angkat jari Anda");
                 if (event.values[0] > 0) {
                     SharedPreferencesUtil sharedPreferences = new SharedPreferencesUtil(getApplicationContext());
-                    sharedPreferences.writeStringPreferences(EXTRA_REPLY, String.valueOf(event.values[0]));
+                    sharedPreferences.writeStringPreferences(EXTRA_REPLY, String.valueOf(Math.round(event.values[0])));
+                    String nilai = String.valueOf(Math.round(event.values[0]));
+                    Toast.makeText(getApplicationContext(), "Kecepatan detak jantung Anda " + nilai + " bpm", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }

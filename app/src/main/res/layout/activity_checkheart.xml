@@ -5,6 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.homepage.CheckHeartActivity"
     android:background="@color/palleteLight">
+    <RelativeLayout
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/palleteDark"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:id="@+id/belititle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BeLI"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="roboto"
+            android:textColor="#FFF"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignLeft="@id/belititle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/heart"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,35 +40,36 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pBar">
+            android:id="@+id/pBar"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/belilogo"
+                android:src="@drawable/beli"/>
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
+                android:id="@+id/loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:progressDrawable="@drawable/loader"
                 android:indeterminate="true"
+                android:visibility="gone"
                 android:indeterminateTintMode="src_atop"
                 android:indeterminateTint="@color/palleteDark"/>
         </RelativeLayout>
         <TextView
             android:id="@+id/please_wait"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_below="@+id/pBar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Please touch your hand on the sensor"
+            android:text="@string/please_touch"
             android:textStyle="bold"
-            android:textColor="@color/palleteDark"/>
-        <TextView
-            android:id="@+id/heartrate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/please_wait"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
+            android:textSize="20dp"
             android:textColor="@color/palleteDark"/>
     </RelativeLayout>
 </RelativeLayout>

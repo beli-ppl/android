@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Beli</string>
+    <string name="app_name">BeLI</string>
 
     <!--Login-->
-    <string name="login_title">BeLi</string>
+    <string name="login_title">BeLI</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -13,15 +13,19 @@
     <string name="tab_label2">Gizi</string>
 
     <string name="you_need_more">You need more exercise!</string>
-    <string name="your_heart_rate">Please check</string>
+    <string name="your_heart_rate">Segera periksa!</string>
     <string name="preference_file_key">skidipappappreman</string>
     <string name="default_notification_channel_id">06071998</string>
 
     <string name="dummyCounter">1500</string>
-    <string name="makan_pagi">Makan pagi</string>
+    <string name="makan_pagi">Sarapan</string>
     <string name="kaloriDummy">Total kalori : 1000</string>
-    <string name="makan_siang">Makan siang</string>
-    <string name="makan_malam">Makan malam</string>
-    <string name="this_is">This is your heart rate</string>
-    <string name="click_here">Click here to check</string>
+    <string name="makan_siang">Makan Siang</string>
+    <string name="makan_malam">Makan Malam</string>
+    <string name="this_is">Kecepatan detak jantung Anda</string>
+    <string name="click_here">Periksa Detak Jantung</string>
+    <string name="logingoogle">atau login dengan Google</string>
+    <string name="you_are_at">Anda berada di</string>
+    <string name="click_here_to_check">Periksa Detak Jantung</string>
+    <string name="please_touch">Letakkan jari Anda di atas sensor</string>
 </resources>

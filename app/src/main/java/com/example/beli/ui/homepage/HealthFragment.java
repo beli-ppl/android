@@ -39,6 +39,7 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
     private TextView textLong;
 
     private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 123;
+    private static final int MY_PERMISSIONS_ACCESS_COARSE_SENSORS = 124;
     private static String TAG = "Health-Fragment";
     private Button checkButton;
 
@@ -78,11 +79,17 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                                textLat.setText("lat: " + Double.toString(location.getAltitude()));
-                                textLong.setText("long: " + Double.toString(location.getLongitude()));
+                                textLat.setText("Latitude " + Double.toString(location.getAltitude()));
+                                textLong.setText("Longitude " + Double.toString(location.getLongitude()));
                             }
                         }
                     });
+        }
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.BODY_SENSORS}, MY_PERMISSIONS_ACCESS_COARSE_SENSORS);
+        } else {
         }
 
         heartratetext = (TextView) view.findViewById(R.id.yourheartrate);
@@ -117,7 +124,7 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
-            Toast.makeText(getActivity(), "Count sensor not available!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Mohon beri izin untuk count sensor", Toast.LENGTH_LONG).show();
         }
 
         SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
@@ -162,7 +169,7 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
-            counter.setText(String.valueOf(event.values[0]));
+            counter.setText(String.valueOf(Math.round(event.values[0])));
             Log.d("stepcounter", String.valueOf(counter.getText()));
             progressBar.setProgress(Float.parseFloat(String.valueOf(counter.getText())));
             Log.d("stepprogress", String.valueOf(progressBar.getProgress()));

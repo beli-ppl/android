@@ -1,203 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/palleteLight">
-
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
+        android:id="@+id/titlebar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.CardView
-            android:id="@id/progress_card"
+        android:layout_height="wrap_content"
+        android:background="@color/palleteDark"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:id="@+id/belititle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/cyan_dark"
-            android:layout_marginBottom="20dp">
+            android:gravity="center"
+            android:text="BeLI"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="roboto"
+            android:textColor="#FFF"/>
 
-            <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                app:animateProgress="true"
-                app:backgroundStrokeColor="@color/shadow"
-                app:backgroundStrokeWidth="5dp"
-                app:drawBackgroundStroke="false"
-                app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="@color/white"
-                app:foregroundStrokeWidth="5dp"
-                app:indeterminate="false"
-                app:indeterminateRotationAnimationDuration="1200"
-                app:indeterminateSweepAnimationDuration="600"
-                app:indeterminateMinimumAngle="45"
-                app:maximum="5000"
-                app:progress="5000"
-                app:progressAnimationDuration="100"
-                app:startAngle="270"/>
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignLeft="@id/belititle2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/heart"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_below="@id/titlebar2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/palleteLight">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/counter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="10000"
-                    android:gravity="center"
-                    style="@style/TextStyle.Counter" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Langkah"
-                    android:gravity="center"
-                    android:textSize="12dp"
-                    style="@style/TextStyle.Counter"
-                    />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/progress_card">
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
+                android:layout_below="@id/titlebar"
+                android:id="@id/progress_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/cardview_light_background"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp">
+                app:cardBackgroundColor="@color/cyan_dark"
+                android:layout_marginBottom="20dp">
+
+                <com.budiyev.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:animateProgress="true"
+                    app:backgroundStrokeColor="@color/shadow"
+                    app:backgroundStrokeWidth="5dp"
+                    app:drawBackgroundStroke="false"
+                    app:foregroundStrokeCap="butt"
+                    app:foregroundStrokeColor="@color/white"
+                    app:foregroundStrokeWidth="5dp"
+                    app:indeterminate="false"
+                    app:indeterminateRotationAnimationDuration="1200"
+                    app:indeterminateSweepAnimationDuration="600"
+                    app:indeterminateMinimumAngle="45"
+                    app:maximum="5000"
+                    app:progress="5000"
+                    app:progressAnimationDuration="100"
+                    app:startAngle="270"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/counter"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Location:"
-                        android:textSize="30dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:text="10000"
+                        android:textSize="40dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        style="@style/TextStyle.Counter" />
 
                     <TextView
-                        android:id="@+id/location_lat"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="lat: 0.00"/>
-
-                    <TextView
-                        android:id="@+id/location_long"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="long: 0.00"/>
-            </LinearLayout>
-
+                        android:text="langkah"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        style="@style/TextStyle.Counter"
+                        />
+                </LinearLayout>
             </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                xmlns:android="http://schemas.android.com/apk/res/android"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/cardview_light_background"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp">
+                android:orientation="vertical"
+                android:layout_below="@id/progress_card">
 
-                <RelativeLayout
-                    android:orientation="vertical"
+                <android.support.v7.widget.CardView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFF"
-                    android:padding="25dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp">
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="@color/cardview_light_background"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="10dp">
 
                     <RelativeLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/heartrate"
-                        android:gravity="center">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/heartrate" />
-                    </RelativeLayout>
+                        android:background="#FFF"
+                        android:padding="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="This is your heart rate"
-                        android:gravity="center"
-                        android:id="@+id/this_is"
-                        android:adjustViewBounds="true"
-                        android:layout_below="@id/heartrate"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/yourheartrate"
-                        android:text="@string/your_heart_rate"
-                        android:layout_below="@id/this_is"
-                        android:padding="8dp"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        style="@style/TextAppearance.AppCompat.Subhead" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/yourheartrate"
-                        android:gravity="center">
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <Button
-                                android:id="@+id/checkButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/heartrate"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/heartrate" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/this_is"
+                            android:gravity="center"
+                            android:id="@+id/this_is"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@id/heartrate"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/yourheartrate"
+                            android:text="@string/your_heart_rate"
+                            android:layout_below="@id/this_is"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            style="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/yourheartrate"
+                            android:gravity="center">
+                            <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:paddingLeft="30dp"
-                                android:paddingRight="30dp"
-                                android:text="Click here to check"
-                                android:background="#2E86C1"
-                                android:textColor="#FFF"
-                                android:layout_marginTop="8dp"
-                                />
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/checkButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingLeft="30dp"
+                                    android:paddingRight="30dp"
+                                    android:text="@string/click_here_to_check"
+                                    android:background="#2E86C1"
+                                    android:textColor="#FFF"
+                                    android:layout_marginTop="8dp"
+                                    android:textStyle="bold"
+                                    />
+                            </RelativeLayout>
                         </RelativeLayout>
                     </RelativeLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
 
-            <Button
-                android:id="@+id/kirimdata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Kirim data"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:background="#2E86C1"
-                android:textColor="#FFF"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="20dp"/>
-        </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="@color/cardview_light_background"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/location"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/location" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/you_are_at"
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"/>
+
+                        <TextView
+                            android:id="@+id/location_lat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Latitude 0.00"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/location_long"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Longitude 0.00"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"/>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <Button
+                    android:id="@+id/kirimdata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Kirim Data"
+                    android:textStyle="bold"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:background="#2E86C1"
+                    android:textColor="#FFF"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="20dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

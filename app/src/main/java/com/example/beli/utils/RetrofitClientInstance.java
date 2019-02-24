@@ -8,7 +8,7 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
 
-    private static final String BASE_URL = "https://beli-ppl.herokuapp.com";
+    private static final String BASE_URL = "https://0c7b7874.ngrok.io";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
