@@ -2,8 +2,10 @@ package com.example.beli.ui.homepage;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.example.beli.R;
+import com.example.beli.service.stepCounter.StepCounterService;
 import com.example.beli.utils.SharedPreferencesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -34,7 +37,7 @@ import org.w3c.dom.Text;
 import static android.app.Activity.RESULT_OK;
 import static com.example.beli.ui.homepage.CheckHeartActivity.EXTRA_REPLY;
 
-public class HealthFragment extends Fragment implements SensorEventListener, View.OnClickListener {
+public class HealthFragment extends Fragment implements View.OnClickListener {
     private TextView textLat;
     private TextView textLong;
 
@@ -47,15 +50,23 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
 
     public static final int TEXT_REQUEST = 1;
     private TextView heartratetext;
-    private SensorManager sensorManager;
     private CircularProgressBar progressBar;
     private TextView counter;
     private TextView yourheartrate;
     private Button button;
-    boolean activityRunning;
+
+    private Intent mStepIntent;
 
     public HealthFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mStepIntent = new Intent(getActivity(), StepCounterService.class);
+        getActivity().startService(mStepIntent);
     }
 
     @Override
@@ -109,9 +120,9 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
         counter = (TextView) view.findViewById(R.id.counter);
         yourheartrate = (TextView) view.findViewById(R.id.yourheartrate);
 
-        sensorManager = (SensorManager) (getActivity()).getSystemService(Context.SENSOR_SERVICE);
         button = (Button) view.findViewById(R.id.kirimdata);
         button.setOnClickListener(this);
+
         return view;
     }
 
@@ -119,18 +130,31 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
     public void onResume() {
         super.onResume();
 
-        activityRunning = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null) {
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        } else {
-            Toast.makeText(getActivity(), "Mohon beri izin untuk count sensor", Toast.LENGTH_LONG).show();
-        }
-
         SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
         String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY) + " bpm";
-        Log.d(TAG, yourheartrate);
         heartratetext.setText(yourheartrate);
+
+        IntentFilter stepCounterFilter = new IntentFilter(StepCounterService.BROADCAST_ACTION);
+        getActivity().registerReceiver(broadcastReceiver, stepCounterFilter);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(broadcastReceiver);
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateViews(intent);
+        }
+    };
+
+    private void updateViews(Intent intent) {
+        String countedStep = intent.getStringExtra("Counted_Step");
+        counter.setText(String.valueOf(countedStep));
+        progressBar.setProgress(Float.parseFloat(String.valueOf(counter.getText())));
     }
 
     @Override
@@ -158,26 +182,6 @@ public class HealthFragment extends Fragment implements SensorEventListener, Vie
                 return;
             }
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        activityRunning = false;
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (activityRunning) {
-            counter.setText(String.valueOf(Math.round(event.values[0])));
-            Log.d("stepcounter", String.valueOf(counter.getText()));
-            progressBar.setProgress(Float.parseFloat(String.valueOf(counter.getText())));
-            Log.d("stepprogress", String.valueOf(progressBar.getProgress()));
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     public void onClick(View v) {
