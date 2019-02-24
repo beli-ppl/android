@@ -10,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -33,7 +34,7 @@ import org.w3c.dom.Text;
 import static android.app.Activity.RESULT_OK;
 import static com.example.beli.ui.homepage.CheckHeartActivity.EXTRA_REPLY;
 
-public class HealthFragment extends Fragment implements SensorEventListener {
+public class HealthFragment extends Fragment implements SensorEventListener, View.OnClickListener {
     private TextView textLat;
     private TextView textLong;
 
@@ -48,6 +49,8 @@ public class HealthFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
     private CircularProgressBar progressBar;
     private TextView counter;
+    private TextView yourheartrate;
+    private Button button;
     boolean activityRunning;
 
     public HealthFragment() {
@@ -97,8 +100,11 @@ public class HealthFragment extends Fragment implements SensorEventListener {
 
         progressBar = (CircularProgressBar) view.findViewById(R.id.progress_bar);
         counter = (TextView) view.findViewById(R.id.counter);
+        yourheartrate = (TextView) view.findViewById(R.id.yourheartrate);
 
         sensorManager = (SensorManager) (getActivity()).getSystemService(Context.SENSOR_SERVICE);
+        button = (Button) view.findViewById(R.id.kirimdata);
+        button.setOnClickListener(this);
         return view;
     }
 
@@ -115,7 +121,7 @@ public class HealthFragment extends Fragment implements SensorEventListener {
         }
 
         SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
-        String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY);
+        String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY) + " bpm";
         Log.d(TAG, yourheartrate);
         heartratetext.setText(yourheartrate);
     }
@@ -165,5 +171,25 @@ public class HealthFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    public void onClick(View v) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(getActivity());
+        String email = sharedPreferencesUtil.readStringPreferences("USER_EMAIL");
+        Log.d("email",email);
+        String subject = "Data Asupan Gizi";
+        String langkah = String.valueOf(counter.getText());
+        String heartrate = String.valueOf(yourheartrate.getText());
+        String bodyText = "Total langkah Anda hari ini : " + langkah + " langkah";
+        bodyText += "\n Detak jantung terakhir Anda : " + heartrate;
+        String mailto = "mailto:" + email + "?" +
+                "subject=" + Uri.encode(subject) +
+                "&body=" + Uri.encode(bodyText);
+        Log.d("mailto", mailto);
+
+        emailIntent.setData(Uri.parse(mailto));
+
+        startActivity(emailIntent);
     }
 }

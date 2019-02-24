@@ -99,7 +99,7 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
         Log.d("email",email);
         String subject = "Data Asupan Gizi";
         String kalori = String.valueOf(counter.getText());
-        String bodyText = "Total kalori yang telah Anda akumulasi hari ini : " + kalori;
+        String bodyText = "Total kalori yang telah Anda akumulasi hari ini : " + kalori + " kcal";
         String mailto = "mailto:" + email + "?" +
                 "subject=" + Uri.encode(subject) +
                 "&body=" + Uri.encode(bodyText);

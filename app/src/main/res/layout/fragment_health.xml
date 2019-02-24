@@ -187,6 +187,7 @@
             </android.support.v7.widget.CardView>
 
             <Button
+                android:id="@+id/kirimdata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -196,7 +197,7 @@
                 android:background="#2E86C1"
                 android:textColor="#FFF"
                 android:layout_marginTop="8dp"
-                android:onClick="sendData"/>
+                android:layout_marginBottom="20dp"/>
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
