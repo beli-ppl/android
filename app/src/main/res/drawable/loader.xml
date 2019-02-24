@@ -3,7 +3,8 @@
     android:fromDegrees="90"
     android:pivotX="50%"
     android:pivotY="50%"
-    android:toDegrees="360" android:layout_height="match_parent"
+    android:toDegrees="360"
+    android:layout_height="match_parent"
     android:layout_width="match_parent">
     <shape
         android:innerRadiusRatio="3"
@@ -12,6 +13,9 @@
         <gradient
             android:angle="0"
             android:type="sweep"
-            android:useLevel="false" />
+            android:useLevel="false"
+            android:startColor="@color/palleteDark"
+            android:centerColor="@color/cyan_dark"
+            android:endColor="@color/palleteDark"/>
     </shape>
 </rotate>
