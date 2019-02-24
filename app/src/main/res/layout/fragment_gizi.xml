@@ -48,7 +48,7 @@
             android:layout_marginBottom="20dp">
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar"
+                android:id="@+id/progress_bar_gizi"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="20dp"
@@ -78,7 +78,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/counter"
+                    android:id="@+id/counter_gizi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="10000"
@@ -149,10 +149,11 @@
                             style="@style/TextStyle.MealComment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/kaloriDummy"/>
+                            android:text="@string/kaloriDummy1"/>
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/gizi1"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -160,6 +161,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/add" />
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -210,10 +212,11 @@
                             style="@style/TextStyle.MealComment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/kaloriDummy"/>
+                            android:text="@string/kaloriDummy2"/>
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/gizi2"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -272,10 +275,11 @@
                             style="@style/TextStyle.MealComment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/kaloriDummy"/>
+                            android:text="@string/kaloriDummy3"/>
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/gizi3"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -283,6 +287,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/add" />
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
