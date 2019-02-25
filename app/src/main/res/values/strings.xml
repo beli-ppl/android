@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">BeLI</string>
+    <string name="app_name">BeLi</string>
 
     <!--Login-->
-    <string name="login_title">BeLI</string>
+    <string name="login_title">BeLi</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -13,14 +13,14 @@
     <string name="tab_label2">Gizi</string>
 
     <string name="you_need_more">You need more exercise!</string>
-    <string name="your_heart_rate">Segera periksa!</string>
+    <string name="your_heart_rate">Segera Periksa!</string>
     <string name="preference_file_key">skidipappappreman</string>
     <string name="default_notification_channel_id">06071998</string>
 
     <string name="dummyCounter">1500</string>
     <string name="makan_pagi">Sarapan</string>
-    <string name="kaloriDummy1">Total kalori : 100</string>
-    <string name="kaloriDummy2">Total kalori : 50</string>
+    <string name="kaloriDummy1">Total kalori : 50</string>
+    <string name="kaloriDummy2">Total kalori : 100</string>
     <string name="kaloriDummy3">Total kalori : 80</string>
     <string name="makan_siang">Makan Siang</string>
     <string name="makan_malam">Makan Malam</string>

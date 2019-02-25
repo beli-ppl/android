@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fromDegrees="90"
+    android:fromDegrees="0"
     android:pivotX="50%"
     android:pivotY="50%"
-    android:toDegrees="360"
+    android:toDegrees="90"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <shape
@@ -14,8 +14,8 @@
             android:angle="0"
             android:type="sweep"
             android:useLevel="false"
-            android:startColor="@color/palleteDark"
-            android:centerColor="@color/cyan_dark"
-            android:endColor="@color/palleteDark"/>
+            android:startColor="@color/cyan_dark"
+            android:centerColor="@color/palleteDark"
+            android:endColor="@color/palleteLight"/>
     </shape>
 </rotate>

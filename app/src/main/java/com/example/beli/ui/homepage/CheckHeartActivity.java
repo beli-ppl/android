@@ -1,10 +1,12 @@
 package com.example.beli.ui.homepage;
 
+import android.Manifest;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +25,6 @@ public class CheckHeartActivity extends AppCompatActivity {
     private SensorManager sensorManager;
     private Sensor heartRateSensor;
     private SensorEventListener heartRateEventListener;
-    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 123;
     private ImageView belilogo;
     private ProgressBar loading;
     private TextView loadingStatement;
@@ -41,7 +42,7 @@ public class CheckHeartActivity extends AppCompatActivity {
         loading = (ProgressBar) findViewById(R.id.loading);
 
         if (heartRateSensor == null) {
-            Toast.makeText(getApplicationContext(), "Perangkat ini tidak memiliki heart sensor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Mohon beri izin untuk body sensor", Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -50,7 +51,7 @@ public class CheckHeartActivity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent event) {
                 belilogo.setVisibility(View.GONE);
                 loading.setVisibility(View.VISIBLE);
-                loadingStatement.setText("Tunggu dulu... Jangan angkat jari Anda");
+                loadingStatement.setText("Tunggu dulu... Tahan jari Anda");
                 if (event.values[0] > 0) {
                     SharedPreferencesUtil sharedPreferences = new SharedPreferencesUtil(getApplicationContext());
                     sharedPreferences.writeStringPreferences(EXTRA_REPLY, String.valueOf(Math.round(event.values[0])));

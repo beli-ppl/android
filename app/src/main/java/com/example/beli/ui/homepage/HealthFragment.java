@@ -34,6 +34,11 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
+
 import static android.app.Activity.RESULT_OK;
 import static com.example.beli.ui.homepage.CheckHeartActivity.EXTRA_REPLY;
 
@@ -52,7 +57,6 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
     private TextView heartratetext;
     private CircularProgressBar progressBar;
     private TextView counter;
-    private TextView yourheartrate;
     private Button button;
 
     private Intent mStepIntent;
@@ -81,26 +85,20 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
         textLat = (TextView) view.findViewById(R.id.location_lat);
         textLong = (TextView) view.findViewById(R.id.location_long);
 
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
         } else {
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                                textLat.setText("Latitude " + Double.toString(location.getAltitude()));
-                                textLong.setText("Longitude " + Double.toString(location.getLongitude()));
+                                textLat.setText("Latitude " + new DecimalFormat("##.##").format(location.getAltitude()));
+                                textLong.setText("Longitude " + new DecimalFormat("##.##").format(location.getLongitude()));
                             }
                         }
                     });
-        }
-
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.BODY_SENSORS}, MY_PERMISSIONS_ACCESS_COARSE_SENSORS);
-        } else {
         }
 
         heartratetext = (TextView) view.findViewById(R.id.yourheartrate);
@@ -110,20 +108,38 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), CheckHeartActivity.class);
-                        getActivity().startActivityForResult(intent, TEXT_REQUEST);
+                        checkHeartRate();
                     }
                 }
         );
 
         progressBar = (CircularProgressBar) view.findViewById(R.id.progress_bar);
         counter = (TextView) view.findViewById(R.id.counter);
-        yourheartrate = (TextView) view.findViewById(R.id.yourheartrate);
 
         button = (Button) view.findViewById(R.id.kirimdata);
         button.setOnClickListener(this);
 
+        SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
+        String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY) + " bpm";
+        Log.d("create", yourheartrate);
+        if (yourheartrate.compareTo(" bpm") == 0) {
+            Log.d("hello", "masuk");
+            heartratetext.setText("Segera Periksa!");
+        } else {
+            heartratetext.setText(yourheartrate);
+        }
+
         return view;
+    }
+
+    public void checkHeartRate() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.BODY_SENSORS}, MY_PERMISSIONS_ACCESS_COARSE_SENSORS);
+        } else {
+            Intent intent = new Intent(getActivity(), CheckHeartActivity.class);
+            getActivity().startActivityForResult(intent, TEXT_REQUEST);
+        }
     }
 
     @Override
@@ -132,7 +148,13 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
 
         SharedPreferencesUtil sharedPreference = new SharedPreferencesUtil(getActivity());
         String yourheartrate = sharedPreference.readStringPreferences(EXTRA_REPLY) + " bpm";
-        heartratetext.setText(yourheartrate);
+        Log.d("resume", yourheartrate);
+        if (yourheartrate.compareTo(" bpm") == 0) {
+            Log.d("helloresume", "masuk");
+            heartratetext.setText("Segera Periksa!");
+        } else {
+            heartratetext.setText(yourheartrate);
+        }
 
         IntentFilter stepCounterFilter = new IntentFilter(StepCounterService.BROADCAST_ACTION);
         getActivity().registerReceiver(broadcastReceiver, stepCounterFilter);
@@ -180,6 +202,17 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
                 } else {
                 }
                 return;
+            } case TEXT_REQUEST: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BODY_SENSORS) == PackageManager.PERMISSION_GRANTED) {
+                        checkHeartRate();
+                    } else {
+                        Toast.makeText(getActivity(), "Anda belum memberikan izin", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                }
             }
         }
     }
@@ -191,7 +224,7 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
         Log.d("email",email);
         String subject = "Data Asupan Gizi";
         String langkah = String.valueOf(counter.getText());
-        String heartrate = String.valueOf(yourheartrate.getText());
+        String heartrate = String.valueOf(heartratetext.getText());
         String bodyText = "Total langkah Anda hari ini : " + langkah + " langkah";
         bodyText += "\n Detak jantung terakhir Anda : " + heartrate;
         String mailto = "mailto:" + email + "?" +
