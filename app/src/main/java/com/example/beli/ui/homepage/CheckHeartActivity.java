@@ -42,7 +42,7 @@ public class CheckHeartActivity extends AppCompatActivity {
         loading = (ProgressBar) findViewById(R.id.loading);
 
         if (heartRateSensor == null) {
-            Toast.makeText(getApplicationContext(), "Mohon beri izin untuk body sensor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Keluar dari aplikasi ini dan kembali lagi", Toast.LENGTH_SHORT).show();
             finish();
         }
 
