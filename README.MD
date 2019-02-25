@@ -23,7 +23,7 @@ Pada sistem ini, Unity Engine berfungsi untuk memberikan game - game interaktif 
 1. Jalankan command `./gradlew installDebug` untuk menginstall apk pada emulator ataupun device yang terhubung dengan komputer.
 
 ## C. Penggunaan Aplikasi
-[Video Penggunaan Aplikasi](https://www.youtube/com)
+[Video Penggunaan Aplikasi](https://www.youtube.com/watch?v=V_XyCN7KHco)
 
 ## D. Deliverable
 [Proposal](https://drive.google.com/file/d/1Y7Ux3YUFwZuOxJE7uHQxdJ02Y3zDQnk1/view?usp=sharing) <br />
