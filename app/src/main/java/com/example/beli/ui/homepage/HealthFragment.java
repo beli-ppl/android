@@ -222,7 +222,7 @@ public class HealthFragment extends Fragment implements View.OnClickListener {
         SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(getActivity());
         String email = sharedPreferencesUtil.readStringPreferences("USER_EMAIL");
         Log.d("email",email);
-        String subject = "Data Asupan Gizi";
+        String subject = "Data Jumlah Langkah dan Detak Jantung";
         String langkah = String.valueOf(counter.getText());
         String heartrate = String.valueOf(heartratetext.getText());
         String bodyText = "Total langkah Anda hari ini : " + langkah + " langkah";
