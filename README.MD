@@ -20,10 +20,7 @@ Pada sistem ini, Unity Engine berfungsi untuk memberikan game - game interaktif 
 3. [Install Apache Ant](http://ant.apache.org/)
 
 ### Install Aplikasi
-1. Jalankan emulator android atau hubungkan device yang ingin digunakan untuk menjalankan aplikasi dengan komputer.
-2. Buka `/bin` direktori pada folder project ini.
-3. Jalankan command `adb install <name of project>-release.apk` pada command line.
-4. Aplikasi akan terinstall pada emulator atau device yang telah dihubungkan tadi.
+1. Jalankan command `./gradlew installDebug` untuk menginstall apk pada emulator ataupun device yang terhubung dengan komputer.
 
 ## C. Penggunaan Aplikasi
 [Video Penggunaan Aplikasi](https://www.youtube/com)
