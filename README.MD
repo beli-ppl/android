@@ -29,5 +29,5 @@ Pada sistem ini, Unity Engine berfungsi untuk memberikan game - game interaktif 
 [Video Penggunaan Aplikasi](https://www.youtube/com)
 
 ## D. Deliverable
-[Proposal](https://drive.google.com/file/d/1Y7Ux3YUFwZuOxJE7uHQxdJ02Y3zDQnk1/view?usp=sharing)
-[Laporan](https://docs.google.com/document/d/1QJjzUlu202ThwhrDmBorzTN7u4u27Eb1zSuiVLmP--w/edit?usp=sharing)
+[Proposal](https://drive.google.com/file/d/1Y7Ux3YUFwZuOxJE7uHQxdJ02Y3zDQnk1/view?usp=sharing) <br />
+[Laporan](https://docs.google.com/document/d/1QJjzUlu202ThwhrDmBorzTN7u4u27Eb1zSuiVLmP--w/edit?usp=sharing) <br />
