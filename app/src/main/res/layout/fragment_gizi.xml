@@ -7,7 +7,6 @@
         android:layout_height="wrap_content"
         android:background="@color/palleteDark"
         android:layout_alignParentTop="true">
-
         <ImageView
             android:id="@+id/belititle2"
             android:layout_width="match_parent"
@@ -21,7 +20,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_alignLeft="@id/belititle"
+            android:layout_alignLeft="@id/belititle2"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="13dp"
             android:src="@drawable/heart"/>

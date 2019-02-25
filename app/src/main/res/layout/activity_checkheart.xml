@@ -11,23 +11,20 @@
         android:layout_height="wrap_content"
         android:background="@color/palleteDark"
         android:layout_alignParentTop="true">
-        <TextView
-            android:id="@+id/belititle"
+        <ImageView
+            android:id="@+id/belititle3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:gravity="center"
-            android:text="BeLI"
-            android:textSize="30dp"
-            android:textStyle="bold"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:fontFamily="roboto"
-            android:textColor="#FFF"/>
+            android:src="@drawable/beli_text"
+            />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_alignLeft="@id/belititle"
+            android:layout_alignLeft="@id/belititle3"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="13dp"
             android:src="@drawable/heart"/>
