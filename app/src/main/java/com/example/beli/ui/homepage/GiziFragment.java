@@ -31,6 +31,7 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
     private ImageView gizi1;
     private ImageView gizi2;
     private ImageView gizi3;
+    private ImageView gizi4;
     private TextView kaloriView;
 
     public GiziFragment() {}
@@ -49,6 +50,7 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
         gizi1 = (ImageView) view.findViewById(R.id.gizi1);
         gizi2 = (ImageView) view.findViewById(R.id.gizi2);
         gizi3 = (ImageView) view.findViewById(R.id.gizi3);
+        gizi4 = (ImageView) view.findViewById(R.id.gizi4);
         Integer kalori = sharedPreferencesUtil.readIntPreferences("KALORI");
         if (kalori != null) {
             counter.setText(String.valueOf(kalori));
@@ -66,7 +68,7 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
                 if (kalori == null) {
                     kalori = 0;
                 }
-                kalori += 50;
+                kalori += 400;
                 sharedPreferencesUtil.writeIntPreferences("KALORI", kalori);
 
                 if (kalori >= 2500) {
@@ -86,7 +88,7 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
                 if (kalori == null) {
                     kalori = 0;
                 }
-                kalori += 100;
+                kalori += 600;
                 sharedPreferencesUtil.writeIntPreferences("KALORI", kalori);
 
                 if (kalori >= 2500) {
@@ -106,7 +108,27 @@ public class GiziFragment extends Fragment implements View.OnClickListener {
                 if (kalori == null) {
                     kalori = 0;
                 }
-                kalori += 80;
+                kalori += 500;
+                sharedPreferencesUtil.writeIntPreferences("KALORI", kalori);
+
+                if (kalori >= 2500) {
+                    progressBar.setForegroundStrokeColor(Color.rgb(46,134,193));
+                }
+
+                Log.d(TAG, String.valueOf(kalori));
+                counter.setText(String.valueOf(kalori));
+                progressBar.setProgress(Float.parseFloat(String.valueOf(counter.getText())));
+                kaloriView.setVisibility(View.VISIBLE);
+            }
+        });
+        gizi4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer kalori = sharedPreferencesUtil.readIntPreferences("KALORI");
+                if (kalori == null) {
+                    kalori = 0;
+                }
+                kalori += 100;
                 sharedPreferencesUtil.writeIntPreferences("KALORI", kalori);
 
                 if (kalori >= 2500) {

@@ -8,7 +8,7 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
 
-    private static final String BASE_URL = "https://81accd2e.ngrok.io";
+    private static final String BASE_URL = "https://baa5969b.ngrok.io";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
