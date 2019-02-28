@@ -19,9 +19,9 @@
 
     <string name="dummyCounter">1500</string>
     <string name="makan_pagi">Sarapan</string>
-    <string name="kaloriDummy1">Total kalori : 50</string>
-    <string name="kaloriDummy2">Total kalori : 100</string>
-    <string name="kaloriDummy3">Total kalori : 80</string>
+    <string name="kaloriDummy1">Total kalori : 400 kcal</string>
+    <string name="kaloriDummy2">Total kalori : 600 kcal</string>
+    <string name="kaloriDummy3">Total kalori : 500 kcal</string>
     <string name="makan_siang">Makan Siang</string>
     <string name="makan_malam">Makan Malam</string>
     <string name="this_is">Kecepatan detak jantung Anda</string>
@@ -30,4 +30,6 @@
     <string name="you_are_at">Anda berada di</string>
     <string name="click_here_to_check">Periksa Detak Jantung</string>
     <string name="please_touch">Letakkan jari Anda di atas sensor</string>
+    <string name="snack">Snack</string>
+    <string name="kaloriDummy4">Total kalori : 100 kcal</string>
 </resources>
